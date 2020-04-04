@@ -1,28 +1,50 @@
-import React from 'react';
-// import logo from './logo.svg';
-import PatientPage from './components/PatientPage';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import M from 'materialize-css'
+import PatientPage from './components/PatientPage'
+import Login from './components/Login'
+import Navbar from './components/Navbar'
 
-function App() {
-  return (
-    <div className="App">
-      <PatientPage />
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
-  );
+class App extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+      patients: [],
+      loggedIn: ''
+		}
+	}
+
+	componentDidMount() {
+		M.AutoInit();
+		fetch('http://localhost:3000/patients')
+			.then(resp => resp.json())
+			.then(patientsData => {
+				this.setState({
+					patients: patientsData
+				})
+			})
+	}
+
+	render() {
+		return(
+			<div>
+        <BrowserRouter>
+          <Navbar patients={this.state.patients} loggedIn={this.state.loggedIn}/>
+          {/* <Route exact path='/login' component={Login}/> */}
+          <Switch>
+            <Route exact path='/login' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='/home' render={() => <PatientPage patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='/logout' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='/' render={() => <PatientPage patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+             {/* <Route exact path='/medications' render={() => <Medications patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/>
+            <Route exact path='/insurance' render={() => <Insurance patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/>
+            <Route exact path='/contacts' render={() => <Contacts patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
+          </Switch>
+        </BrowserRouter>
+        
+			</div>
+		)
+	}
 }
 
-export default App;
+export default App
