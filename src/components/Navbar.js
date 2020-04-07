@@ -3,7 +3,7 @@ import React from 'react'
 const Navbar = () => {
 
 	return (
-		<div className="container">
+		// <div className="container">
 		<nav className="nav-extended teal lighten-3">
 			<div style={{paddingLeft:20}} className="nav-wrapper">
 			<a href="/" className="brand-logo">Vitalities</a>
@@ -22,7 +22,7 @@ const Navbar = () => {
 			</div>
 		</nav>
 		
-	</div>
+	// </div>
 	)
 }
 
