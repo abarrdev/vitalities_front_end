@@ -14,7 +14,7 @@ const Navbar = () => {
 			</div>
 			<div className="nav-content">
 			<ul className="tabs tabs-transparent">
-				<li className="tab"><a href="/records">My Records</a></li>
+				<li className="tab"><a className="active" target="_self" href="/records">My Records</a></li>
 				<li className="tab disabled"><a href="/medication-manager">Medication Manager</a></li>
 				<li className="tab disabled"><a href="/insurance-cards">Insurance Cards</a></li>
 				<li className="tab disabled"><a href="/contacts">Contacts</a></li>
