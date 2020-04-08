@@ -1,16 +1,7 @@
 import React from 'react'
-import M from 'materialize-css'
-
-
 
 class RecordContainer extends React.Component {
 
-	componentDidMount = () => {
-		const elems = document.querySelectorAll('.collapsible');
-		M.Collapsible.init(elems, {
-			accordion: true
-		  });
-	}
 
 	render() {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, title, notes } = this.props.record
