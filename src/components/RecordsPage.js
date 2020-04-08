@@ -3,7 +3,7 @@ import RecordContainer from './RecordContainer'
 import M from 'materialize-css'
 
 
-class PatientPage extends React.Component {
+class RecordsPage extends React.Component {
 	constructor() {
 		super()
 		this.state = {
@@ -13,7 +13,8 @@ class PatientPage extends React.Component {
 				practice_name: "",
 				visit_date: "",
 				title: "",
-				notes: ""
+				notes: "",
+				patient_id: 1
 			}
 		}
 	}
@@ -43,6 +44,51 @@ class PatientPage extends React.Component {
 				[event.target.name]: input
 			}
 		})
+	}
+
+	handleSubmit = (event) => {
+		console.log(this.state)
+		event.preventDefault()
+		const visit_date = document.getElementById("visit_date").value
+		this.setState({
+			formData: {
+				...this.state.formData,
+				visit_date: visit_date
+			}
+		}, this.postRecord)
+
+		
+	}
+
+	postRecord = () => {
+		const reqObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(this.state.formData)
+		}
+
+		fetch('http://localhost:3001/records', reqObj)
+			.then(resp => resp.json())
+			.then(newRecord => {
+				this.props.updateState(newRecord)
+						
+		this.setState({
+			formData: {
+				doctor_first_name: "",
+				doctor_last_name: "",
+				practice_name: "",
+				visit_date: "",
+				title: "",
+				notes: "",
+				patient_id: 1
+			}
+		})
+			})
+			.catch(error => {
+				console.log('Error with Posting New Record:', error)
+			})
 	}
 
 
@@ -83,17 +129,20 @@ class PatientPage extends React.Component {
       							<div class="file-path-wrapper">
         							<input class="file-path validate" type="text" placeholder="Upload one or more files" />
       							</div>
+						
+
     						</div>
 							</form>
-
-							<input type="submit" />
-						</form>
-					</div>
 					<div class="modal-footer">
-						{/* <a href="/records" class="modal-close waves-effect waves-green btn-flat">Add Record</a> */}
+
 						<a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+						<input class="modal-close btn" type="submit" />
+
 					</div>
+					</form>
 				</div>
+				</div>
+				
 			{/* END MODAL FORM */}
 
 				<div class="row">
@@ -122,5 +171,5 @@ class PatientPage extends React.Component {
 	}
 }
 
-export default PatientPage
+export default RecordsPage;
 
