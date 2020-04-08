@@ -30,6 +30,8 @@ class PatientPage extends React.Component {
 	componentDidMount = () => {
 		const elems = document.querySelectorAll('.modal');
 		 M.Modal.init(elems);
+		const elems2 = document.querySelectorAll('.datepicker');
+		 M.Datepicker.init(elems2);
 		// const instances = M.Modal.init(elems, options);
 	}
 
@@ -52,6 +54,8 @@ class PatientPage extends React.Component {
 				<div id="record-modal" class="modal">
 					<div class="modal-content">
 						<form onSubmit={this.handleSubmit}>
+							<h4>Add New Record</h4>
+
 							<input id="doctor_last_name" name="doctor_last_name" type="text" onChange={this.handleEnterText} value={this.state.formData.doctor_last_name} />
 							<label htmlFor="doctor_last_name">Doctor's Last Name</label>
 							
@@ -61,10 +65,28 @@ class PatientPage extends React.Component {
 							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEnterText} value={this.state.formData.practice_name} />
 							<label htmlFor="practice_name">Hospital or Practice Name</label>
 
-							<input id="visit_date" type="date" className="datepicker" name="visit_date" style={{maxWidth:'150'}}/>
-							<label htmlFor="visit_date">Date of Visit:</label>
+							<input id="visit_date" type="text" className="datepicker" name="visit_date"/>
+							<label htmlFor="visit_date">Date of Visit</label>
                                    
+							<input id="title" name="title" type="text" onChange={this.handleEnterText} value={this.state.formData.title} />
+							<label htmlFor="title">Title (e.g., "Routine PCP Checkup", "Wrist X-Ray", etc.)</label>
 
+							<input id="notes" name="notes" type="text" onChange={this.handleEnterText} value={this.state.formData.notes} />
+							<label htmlFor="notes">Notes</label><br /><br />
+
+							<form action="#">
+							<div class="file-field input-field">
+      							<div class="btn">
+        							<span>FILE</span>
+        							<input type="file" multiple />
+     							</div>
+      							<div class="file-path-wrapper">
+        							<input class="file-path validate" type="text" placeholder="Upload one or more files" />
+      							</div>
+    						</div>
+							</form>
+
+							<input type="submit" />
 						</form>
 					</div>
 					<div class="modal-footer">
