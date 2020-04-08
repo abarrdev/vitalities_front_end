@@ -27,11 +27,17 @@ class App extends React.Component {
       patients: patientsData,
       records: recordsData
     }))
-  }   
+  }  
+  
+  updateState = (recordsData) => {
+    this.setState({
+      records: [...this.state.records, recordsData]
+    })
+  }
 	
 
 	render() {
-    // console.log(this.state.records)
+    console.log(this.state.records)
 		return(
 			<div>
         <BrowserRouter>
@@ -39,9 +45,9 @@ class App extends React.Component {
           {/* <Route exact path='/login' component={Login}/> */}
           <Switch>
             <Route exact path='/login' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-            <Route exact path='/home' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/logout' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-            <Route exact path='/records' render={() => <RecordsPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='/home' render={() => <PatientPage updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='/records' render={() => <RecordsPage updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             
