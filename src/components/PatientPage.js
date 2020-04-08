@@ -16,8 +16,15 @@ class PatientPage extends React.Component {
 
 	render() {
 		return(
+			
 			<div className="container">
-				<h3>Upcoming Appointments</h3>
+					<div class="row">
+					<h3>Upcoming Appointments &nbsp;
+					<a class="waves-effect waves-light btn-floating modal-trigger" data-target="appointment-modal">
+							<i class="material-icons">add</i>
+						</a>
+					</h3>
+				</div>
 			<table>
 			<thead>
 			  <tr>
