@@ -21,7 +21,8 @@ class App extends React.Component {
 		M.AutoInit();
 		Promise.all([
       fetch('http://localhost:3001/patients'),
-      fetch('http://localhost:3001/records')
+      fetch('http://localhost:3001/records'),
+      // fetch('http://localhost:3001/logged_in', {credentials: 'include'})
     ])
     .then(([resp1, resp2]) => Promise.all([resp1.json(), resp2.json()]))
     .then(([patientsData, recordsData]) => this.setState({
@@ -49,6 +50,7 @@ class App extends React.Component {
       records: [...this.state.records, recordsData]
     })
   }
+
 	
 
 	render() {

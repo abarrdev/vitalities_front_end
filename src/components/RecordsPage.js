@@ -23,7 +23,7 @@ class RecordsPage extends React.Component {
 		// const now = new Date();
 		return this.props.records.map(record => {
 			if ((record.patient_id === 1) && (record.title !== "")) {
-				return <RecordContainer key={record.id} record={record}/>
+				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick}/>
 			}
 		})
 	}
@@ -33,7 +33,7 @@ class RecordsPage extends React.Component {
 		 M.Modal.init(elems);
 		const elems2 = document.querySelectorAll('.datepicker');
 		 M.Datepicker.init(elems2);
-		// const instances = M.Modal.init(elems, options);
+		 // const instances = M.Modal.init(elems, options);
 	}
 
 	handleEnterText = (event) => {
@@ -89,6 +89,12 @@ class RecordsPage extends React.Component {
 	}
 
 
+	handleClick = (id, event) => {
+		event.preventDefault()
+		console.log(id, 'you clicked edit!')
+	}
+
+
 	render() {
 		return(
 			<div className="container">
@@ -116,7 +122,7 @@ class RecordsPage extends React.Component {
 
 							<input id="notes" name="notes" type="text" onChange={this.handleEnterText} value={this.state.formData.notes} />
 							<label htmlFor="notes">Notes</label><br /><br />
-
+							{/* file submit below */}
 							<form action="#">
 							<div class="file-field input-field">
       							<div class="btn">
@@ -126,16 +132,13 @@ class RecordsPage extends React.Component {
       							<div class="file-path-wrapper">
         							<input class="file-path validate" type="text" placeholder="Upload one or more files" />
       							</div>
-						
-
     						</div>
 							</form>
-					<div class="modal-footer">
-
-						<a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-						<input class="modal-close btn" type="submit" />
-
-					</div>
+						{/* submit or cancel footer below */}
+						<div class="modal-footer">
+							<a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+							<input class="modal-close btn" type="submit" />
+						</div>
 					</form>
 				</div>
 				</div>	
@@ -157,10 +160,12 @@ class RecordsPage extends React.Component {
 				  <th>Practice</th>
 				  <th>Title</th>
 				  <th>My Notes</th>
+				  <th>Edit</th>
+				  <th>Delete</th>
 			  </tr>
 			</thead>
 			{this.renderPastRecord()}
-			
+
 		  </table>
 		  </div>		 
 		)
