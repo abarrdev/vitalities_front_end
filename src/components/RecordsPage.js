@@ -91,8 +91,29 @@ class RecordsPage extends React.Component {
 
 	handleClick = (id, event) => {
 		event.preventDefault()
-		console.log(id, 'you clicked edit!')
+		if (event.target.innerText === "delete") {
+			this.deleteRecord(id)
+		}
+		if (event.target.innerText === "edit") {
+			console.log("EDIIIIT")
+		}
 	}
+
+	deleteRecord = (id) => {
+		const url = 'http://localhost:3001/records/' + `${id}`
+		const reqObj = {
+			method: 'DELETE'
+			}
+
+		fetch(url, reqObj)
+			.then(resp => resp.json())
+			.then(deletedRecordId => {
+				this.props.updateAfterDelete(deletedRecordId)
+			});
+	}
+		
+
+	
 
 
 	render() {

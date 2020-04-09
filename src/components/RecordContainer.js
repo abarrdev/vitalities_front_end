@@ -1,5 +1,5 @@
 import React from 'react'
-import M from 'materialize-css'
+// import M from 'materialize-css'
 
 
 class RecordContainer extends React.Component {
@@ -27,7 +27,7 @@ class RecordContainer extends React.Component {
 					<a class="waves-effect waves-light btn-floating btn-small" onClick={(event) => {this.props.handleClick({ id }, event)}}><i class="material-icons">edit</i></a>
 				</td>
 				<td>
-					<a class="waves-effect waves-light btn-floating btn-small"><i class="material-icons">delete</i></a>
+					<a class="waves-effect waves-light btn-floating btn-small" onClick={(event) => {this.props.handleClick(id, event)}}><i class="material-icons">delete</i></a>
 				</td>
 			  </tr>
 			</tbody>
