@@ -4,8 +4,8 @@ import M from 'materialize-css'
 
 
 class RecordsPage extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			formData: {
 				doctor_first_name: "",
@@ -55,9 +55,7 @@ class RecordsPage extends React.Component {
 				...this.state.formData,
 				visit_date: visit_date
 			}
-		}, this.postRecord)
-
-		
+		}, this.postRecord)	
 	}
 
 	postRecord = () => {
@@ -73,18 +71,17 @@ class RecordsPage extends React.Component {
 			.then(resp => resp.json())
 			.then(newRecord => {
 				this.props.updateState(newRecord)
-						
-		this.setState({
-			formData: {
-				doctor_first_name: "",
-				doctor_last_name: "",
-				practice_name: "",
-				visit_date: "",
-				title: "",
-				notes: "",
-				patient_id: 1
-			}
-		})
+				this.setState({
+					formData: {
+						doctor_first_name: "",
+						doctor_last_name: "",
+						practice_name: "",
+						visit_date: "",
+						title: "",
+						notes: "",
+						patient_id: 1
+					}
+				})
 			})
 			.catch(error => {
 				console.log('Error with Posting New Record:', error)
@@ -141,8 +138,7 @@ class RecordsPage extends React.Component {
 					</div>
 					</form>
 				</div>
-				</div>
-				
+				</div>	
 			{/* END MODAL FORM */}
 
 				<div class="row">

@@ -7,11 +7,12 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 
 class App extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
       patients: [],
-      loggedIn: '',
+      isLoggedIn: false,
+      loggedInPatient: {},
       records: []
 		}
 	}
@@ -28,6 +29,20 @@ class App extends React.Component {
       records: recordsData
     }))
   }  
+
+  handleLogin = (credentials) => {
+    this.setState({
+      isLoggedIn: true,
+      loggedInPatient: credentials.loggedInPatient
+    })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      isLoggedIn: false,
+      loggedInPatient: {}
+    })
+  }
   
   updateState = (recordsData) => {
     this.setState({
@@ -42,10 +57,10 @@ class App extends React.Component {
 			<div>
         <BrowserRouter>
           <Navbar patients={this.state.patients} loggedIn={this.state.loggedIn} records={this.state.records}/>
-          {/* <Route exact path='/login' component={Login}/> */}
           <Switch>
             <Route exact path='/login' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-            <Route exact path='/logout' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            {/* <Route exact path='/logout' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />      */}
+            <Route exact path='/signup' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/home' render={() => <PatientPage updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/records' render={() => <RecordsPage updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
@@ -56,7 +71,6 @@ class App extends React.Component {
             <Route exact path='/contacts' render={() => <Contacts patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
           </Switch>
         </BrowserRouter>
-        
 			</div>
 		)
 	}
