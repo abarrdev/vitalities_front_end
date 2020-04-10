@@ -5,6 +5,7 @@ import PatientPage from './components/PatientPage'
 import RecordsPage from './components/RecordsPage'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
+import axios from 'axios'
 
 class App extends React.Component {
 	constructor(props) {
@@ -18,17 +19,30 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		M.AutoInit();
-		Promise.all([
-      fetch('http://localhost:3001/patients'),
-      fetch('http://localhost:3001/records'),
-      // fetch('http://localhost:3001/logged_in', {credentials: 'include'})
+    M.AutoInit();
+    axios.all([
+      axios.get('http://localhost:3001/patients'),
+      axios.get('http://localhost:3001/records')
     ])
-    .then(([resp1, resp2]) => Promise.all([resp1.json(), resp2.json()]))
-    .then(([patientsData, recordsData]) => this.setState({
-      patients: patientsData,
-      records: recordsData
-    }))
+      .then(axios.spread((patientsResp, recordsResp) => {
+        console.log(patientsResp, recordsResp)
+        const patientsData = patientsResp.data
+        const recordsData = recordsResp.data
+        this.setState({
+          patients: patientsData,
+          records: recordsData
+        })
+      }))
+		// Promise.all([
+    //   fetch('http://localhost:3001/patients'),
+    //   fetch('http://localhost:3001/records'),
+    //   // fetch('http://localhost:3001/logged_in', {credentials: 'include'})
+    // ])
+    // .then(([resp1, resp2]) => Promise.all([resp1.json(), resp2.json()]))
+    // .then(([patientsData, recordsData]) => this.setState({
+    //   patients: patientsData,
+    //   records: recordsData
+    // }))
   }  
 
   handleLogin = (credentials) => {
