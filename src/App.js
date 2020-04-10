@@ -25,7 +25,6 @@ class App extends React.Component {
       axios.get('http://localhost:3001/records')
     ])
       .then(axios.spread((patientsResp, recordsResp) => {
-        console.log(patientsResp, recordsResp)
         const patientsData = patientsResp.data
         const recordsData = recordsResp.data
         this.setState({
@@ -33,16 +32,6 @@ class App extends React.Component {
           records: recordsData
         })
       }))
-		// Promise.all([
-    //   fetch('http://localhost:3001/patients'),
-    //   fetch('http://localhost:3001/records'),
-    //   // fetch('http://localhost:3001/logged_in', {credentials: 'include'})
-    // ])
-    // .then(([resp1, resp2]) => Promise.all([resp1.json(), resp2.json()]))
-    // .then(([patientsData, recordsData]) => this.setState({
-    //   patients: patientsData,
-    //   records: recordsData
-    // }))
   }  
 
   handleLogin = (credentials) => {
@@ -69,21 +58,6 @@ class App extends React.Component {
     const updated = this.state.records.filter(record => record.id !== deletedRecordId.id);
     this.setState({records: updated})
   }
-
-  // updateAfterDelete = (deletedRecordId) => {
-  //   const updatedRecords = []
-  //   this.state.records.map(record => {
-  //     if (record.id !== deletedRecordId) {
-  //       updatedRecords.push(record)
-  //     }
-  //   })
-  //   this.setState({
-  //     records: updatedRecords
-  //   });
-  // }
-
-
-	
 
 	render() {
     console.log(this.state.records)
