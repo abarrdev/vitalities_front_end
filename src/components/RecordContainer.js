@@ -13,9 +13,10 @@ class RecordContainer extends React.Component {
 
 	render() {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, title, notes, id } = this.props.record
-		
+		// console.log('heeeeey', this.props.record)
 	   
 		return(
+
 			<tbody>
 			  <tr>
 				<td>{ visit_date }</td>
@@ -24,7 +25,7 @@ class RecordContainer extends React.Component {
 				<td>{ title }</td>
 				<td>{ notes }</td>
 				<td>
-					<a class="waves-effect waves-light btn-floating btn-small" onClick={(event) => {this.props.handleClick({ id }, event)}}><i class="material-icons">edit</i></a>
+					<a class="waves-effect waves-light btn-floating btn-small" onClick={(event) => {this.props.handleClick(id, event)}}><i class="material-icons">edit</i></a>
 				</td>
 				<td>
 					<a class="waves-effect waves-light btn-floating btn-small" onClick={(event) => {this.props.handleClick(id, event)}}><i class="material-icons">delete</i></a>

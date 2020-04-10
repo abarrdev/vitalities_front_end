@@ -47,7 +47,7 @@ class RecordsPage extends React.Component {
 	}
 
 	handleSubmit = (event) => {
-		console.log(this.state)
+		// console.log(this.state)
 		event.preventDefault()
 		const visit_date = document.getElementById("visit_date").value
 		this.setState({
@@ -56,6 +56,8 @@ class RecordsPage extends React.Component {
 				visit_date: visit_date
 			}
 		}, this.postRecord)	
+		//set state must be done before posting record, record only posted once state is done setting
+		//
 	}
 
 	postRecord = () => {
@@ -108,13 +110,11 @@ class RecordsPage extends React.Component {
 		fetch(url, reqObj)
 			.then(resp => resp.json())
 			.then(deletedRecordId => {
+				console.log(deletedRecordId)
 				this.props.updateAfterDelete(deletedRecordId)
 			});
 	}
 		
-
-	
-
 
 	render() {
 		return(
