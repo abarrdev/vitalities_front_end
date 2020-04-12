@@ -4,12 +4,6 @@ import React from 'react'
 
 class RecordContainer extends React.Component {
 
-	componentDidMount() {
-
-	}
-	//create a button for delete action
-	//add click listener
-	//hook listener up to fetch-delete fn
 
 	render() {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, title, notes, id } = this.props.record

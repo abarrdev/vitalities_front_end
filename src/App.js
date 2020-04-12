@@ -54,8 +54,8 @@ class App extends React.Component {
     })
   }
 
-  updateAfterDelete = (deletedRecordId) => {
-    const updated = this.state.records.filter(record => record.id !== deletedRecordId.id);
+  updateAfterDelete = (deletedRecord) => {
+    const updated = this.state.records.filter(record => record.id !== deletedRecord.id);
     this.setState({records: updated})
   }
 
