@@ -1,5 +1,6 @@
 import React from 'react'
 import RecordContainer from './RecordContainer'
+import axios from 'axios'
 import M from 'materialize-css'
 
 
@@ -61,17 +62,19 @@ class RecordsPage extends React.Component {
 	}
 
 	postRecord = () => {
-		const reqObj = {
+		const options = {
+			url: 'http://localhost:3001/records',
 			method: 'POST',
 			headers: {
+				'Accept' : 'application/json',
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(this.state.formData)
+			data: this.state.formData
 		}
 
-		fetch('http://localhost:3001/records', reqObj)
-			.then(resp => resp.json())
-			.then(newRecord => {
+		axios(options)
+			.then(newRecordResp => {
+				const newRecord = newRecordResp.data
 				this.props.updateState(newRecord)
 				this.setState({
 					formData: {
@@ -102,17 +105,18 @@ class RecordsPage extends React.Component {
 	}
 
 	deleteRecord = (id) => {
-		const url = 'http://localhost:3001/records/' + `${id}`
-		const reqObj = {
-			method: 'DELETE'
-			}
+		
+		// const url = 'http://localhost:3001/records/' + `${id}`
+		// const reqObj = {
+		// 	method: 'DELETE'
+		// 	}
 
-		fetch(url, reqObj)
-			.then(resp => resp.json())
-			.then(deletedRecordId => {
-				console.log(deletedRecordId)
-				this.props.updateAfterDelete(deletedRecordId)
-			});
+		// fetch(url, reqObj)
+		// 	.then(resp => resp.json())
+		// 	.then(deletedRecordId => {
+		// 		console.log(deletedRecordId)
+		// 		this.props.updateAfterDelete(deletedRecordId)
+		// 	});
 	}
 		
 
