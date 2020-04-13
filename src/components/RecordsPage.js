@@ -24,7 +24,7 @@ class RecordsPage extends React.Component {
 		// const now = new Date();
 		return this.props.records.map(record => {
 			if ((record.patient_id === 1) && (record.title !== "")) {
-				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick} formData={this.state.formData}/>
+				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick} formData={this.state.formData} updateAfterEdit={this.props.updateAfterEdit}/>
 			}
 		})
 	}
@@ -100,16 +100,9 @@ class RecordsPage extends React.Component {
 		if (event.target.innerText === "delete") {
 			this.deleteRecord(id)
 		}
-		if (event.target.innerText === "edit") {
-			this.editRecord(id)
-		}
 	}
 
-	// editRecord = (id) => {
-	// 	console.log(id, "was clicked")
-		
-	// 	this.modalInst.open();
-	// }
+
 
 
 	deleteRecord = (id) => {
@@ -120,42 +113,6 @@ class RecordsPage extends React.Component {
 			this.props.updateAfterDelete(deletedRecord)
 		})
 	}
-
-	//--------------more work to be done here:
-	//----------------
-	// editRecord = (id) => {
-	// 	console.log("EDIIIIT", id)
-	// 	const instUrl = 'http://localhost:3001/records/' + `${id}`
-	// 	const options = {
-	// 		url: instUrl,
-	// 		method: 'PUT',
-	// 		headers: {
-	// 			'Accept' : 'application/json',
-	// 			'Content-Type': 'application/json'
-	// 		},
-	// 		data: this.state.formData
-	// 	}
-
-	// 	axios(options)
-	// 		.then(editedRecordResp => {
-	// 			const editedRecord = editedRecordResp.data
-	// 			this.props.updateAfterEdit(editedRecord)
-	// 			this.setState({
-	// 				formData: {
-	// 					doctor_first_name: "",
-	// 					doctor_last_name: "",
-	// 					practice_name: "",
-	// 					visit_date: "",
-	// 					title: "",
-	// 					notes: "",
-	// 					patient_id: 1
-	// 				}
-	// 			})
-	// 		})
-	// 		.catch(error => {
-	// 			console.log('Error with Posting New Record:', error)
-	// 		})
-	// }
 
 	
 		
