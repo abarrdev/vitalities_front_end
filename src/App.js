@@ -69,9 +69,11 @@ class App extends React.Component {
 	render() {
     console.log(this.state.records)
 		return(
-			<div>
-        <BrowserRouter>
+      <div>
           <Navbar patients={this.state.patients} loggedIn={this.state.loggedIn} records={this.state.records}/>
+		
+        <BrowserRouter>
+
           <Switch>
             <Route exact path='/login' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             {/* <Route exact path='/logout' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />      */}
@@ -87,6 +89,7 @@ class App extends React.Component {
           </Switch>
         </BrowserRouter>
 			</div>
+      
 		)
 	}
 }

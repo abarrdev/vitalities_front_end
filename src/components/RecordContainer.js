@@ -30,7 +30,6 @@ class RecordContainer extends React.Component {
 	}
 
 	handleEditButtonClick = () => {
-		console.log('HELLO')
 		this.setState({
 			editFormData: {
 				doctor_first_name: this.props.record.doctor_first_name,
@@ -44,7 +43,6 @@ class RecordContainer extends React.Component {
 		})	
 	}
 
-	
 
 	handleEditText = (event) => {
 		const input = event.target.value
@@ -52,6 +50,21 @@ class RecordContainer extends React.Component {
 			editFormData: {
 				...this.state.editFormData,
 				[event.target.name]: input
+			}
+		})
+	}
+
+	cancelEdit = () => {
+		console.log(this.state.editFormData, "cancelled")
+		this.setState({
+			editFormData: {
+				doctor_first_name: "",
+				doctor_last_name: "",
+				practice_name: "",
+				visit_date: "",
+				title: "",
+				notes: "",
+				patient_id: 1
 			}
 		})
 	}
@@ -69,6 +82,7 @@ class RecordContainer extends React.Component {
 			}
 		}, this.patchRecord(id))			
 	}
+
 
 	patchRecord = (id) => {
 		const instUrl = 'http://localhost:3001/records/' + `${id}`
@@ -105,6 +119,7 @@ class RecordContainer extends React.Component {
 
 	render() {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, title, notes, id } = this.props.record
+		console.log('HELLO', this.state)
 
 		return(
 			<React.Fragment>
@@ -116,11 +131,11 @@ class RecordContainer extends React.Component {
 							<h4>Edit Record</h4>
 							<p>(type to edit)</p>
 
-							<input id="doctor_last_name" name="doctor_last_name" type="text" onChange={this.handleEditText} value={this.state.editFormData.doctor_last_name}/>
+							<input id="doctor_last_name" name="doctor_last_name" type="text" onChange={this.handleEditText} value={this.state.editFormData.doctor_last_name} />
 							{/* set values to state */}
 							<label htmlFor="doctor_last_name">Doctor's Last Name</label>
 							
-							<input id="doctor_first_name" name="doctor_first_name" type="text" onChange={this.handleEditText} value={ this.state.editFormData.doctor_first_name } />
+							<input id="doctor_first_name" name="doctor_first_name" type="text" onChange={this.handleEditText} value={this.state.editFormData.doctor_first_name} />
 							<label htmlFor="doctor_first_name">Doctor's First Name</label>
 
 							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEditText} value={ this.state.editFormData.practice_name } />
