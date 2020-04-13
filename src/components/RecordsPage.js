@@ -24,14 +24,15 @@ class RecordsPage extends React.Component {
 		// const now = new Date();
 		return this.props.records.map(record => {
 			if ((record.patient_id === 1) && (record.title !== "")) {
-				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick}/>
+				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick} formData={this.state.formData}/>
 			}
 		})
 	}
 	
 	componentDidMount = () => {
-		const elems = document.querySelectorAll('.modal');
-		 M.Modal.init(elems);
+		const newRecordForm = document.querySelectorAll('.modal');
+		M.Modal.init(newRecordForm);
+		
 		const elems2 = document.querySelectorAll('.datepicker');
 		 M.Datepicker.init(elems2);
 		 // const instances = M.Modal.init(elems, options);
@@ -48,7 +49,6 @@ class RecordsPage extends React.Component {
 	}
 
 	handleSubmit = (event) => {
-		// console.log(this.state)
 		event.preventDefault()
 		const visit_date = document.getElementById("visit_date").value
 		this.setState({
@@ -58,7 +58,8 @@ class RecordsPage extends React.Component {
 			}
 		}, this.postRecord)	
 		//set state must be done before posting record, record only posted once state is done setting
-		//
+		//otherwise, post takes place without grabbing state that includes the visit_date
+		//ty MG for this tip!
 	}
 
 	postRecord = () => {
@@ -100,33 +101,73 @@ class RecordsPage extends React.Component {
 			this.deleteRecord(id)
 		}
 		if (event.target.innerText === "edit") {
-			console.log("EDIIIIT")
+			this.editRecord(id)
 		}
 	}
 
-	deleteRecord = (id) => {
+	editRecord = (id) => {
+		console.log(id, "was clicked")
 		
-		// const url = 'http://localhost:3001/records/' + `${id}`
-		// const reqObj = {
-		// 	method: 'DELETE'
-		// 	}
-
-		// fetch(url, reqObj)
-		// 	.then(resp => resp.json())
-		// 	.then(deletedRecordId => {
-		// 		console.log(deletedRecordId)
-		// 		this.props.updateAfterDelete(deletedRecordId)
-		// 	});
+		this.modalInst.open();
 	}
+
+
+	deleteRecord = (id) => {
+		const instUrl = 'http://localhost:3001/records/' + `${id}`
+		axios.delete(instUrl)
+		.then(deletedRecordResp => {
+			const deletedRecord = deletedRecordResp.data
+			this.props.updateAfterDelete(deletedRecord)
+		})
+	}
+
+	//--------------more work to be done here:
+	//----------------
+	// editRecord = (id) => {
+	// 	console.log("EDIIIIT", id)
+	// 	const instUrl = 'http://localhost:3001/records/' + `${id}`
+	// 	const options = {
+	// 		url: instUrl,
+	// 		method: 'PUT',
+	// 		headers: {
+	// 			'Accept' : 'application/json',
+	// 			'Content-Type': 'application/json'
+	// 		},
+	// 		data: this.state.formData
+	// 	}
+
+	// 	axios(options)
+	// 		.then(editedRecordResp => {
+	// 			const editedRecord = editedRecordResp.data
+	// 			this.props.updateAfterEdit(editedRecord)
+	// 			this.setState({
+	// 				formData: {
+	// 					doctor_first_name: "",
+	// 					doctor_last_name: "",
+	// 					practice_name: "",
+	// 					visit_date: "",
+	// 					title: "",
+	// 					notes: "",
+	// 					patient_id: 1
+	// 				}
+	// 			})
+	// 		})
+	// 		.catch(error => {
+	// 			console.log('Error with Posting New Record:', error)
+	// 		})
+	// }
+
+	
 		
 
 	render() {
 		return(
+			<React.Fragment>
 			<div className="container">
 
 			{/* BEGIN MODAL FORM */}
-				<div id="record-modal" class="modal">
-					<div class="modal-content">
+				<div id="record-modal" className="modal">
+					<div className="modal-content">
 						<form onSubmit={this.handleSubmit}>
 							<h4>Add New Record</h4>
 
@@ -190,9 +231,9 @@ class RecordsPage extends React.Component {
 			  </tr>
 			</thead>
 			{this.renderPastRecord()}
-
 		  </table>
-		  </div>		 
+		  </div>
+		  </React.Fragment>		 
 		)
 	}
 }
