@@ -24,14 +24,15 @@ class RecordsPage extends React.Component {
 		// const now = new Date();
 		return this.props.records.map(record => {
 			if ((record.patient_id === 1) && (record.title !== "")) {
-				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick}/>
+				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick} formData={this.state.formData}/>
 			}
 		})
 	}
 	
 	componentDidMount = () => {
 		const newRecordForm = document.querySelectorAll('.modal');
-		 M.Modal.init(newRecordForm);
+		M.Modal.init(newRecordForm);
+		
 		const elems2 = document.querySelectorAll('.datepicker');
 		 M.Datepicker.init(elems2);
 		 // const instances = M.Modal.init(elems, options);
@@ -106,6 +107,8 @@ class RecordsPage extends React.Component {
 
 	editRecord = (id) => {
 		console.log(id, "was clicked")
+		
+		this.modalInst.open();
 	}
 
 
