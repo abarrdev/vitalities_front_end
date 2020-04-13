@@ -16,6 +16,16 @@ class RecordsPage extends React.Component {
 				title: "",
 				notes: "",
 				patient_id: 1
+			},
+			editFormData: {
+				id: "",
+				doctor_first_name: "",
+				doctor_last_name: "",
+				practice_name: "",
+				visit_date: "",
+				title: "",
+				notes: "",
+				patient_id: 1
 			}
 		}
 	}
@@ -24,7 +34,7 @@ class RecordsPage extends React.Component {
 		// const now = new Date();
 		return this.props.records.map(record => {
 			if ((record.patient_id === 1) && (record.title !== "")) {
-				return <RecordContainer key={record.id} record={record} handleClick={this.handleClick} formData={this.state.formData} updateAfterEdit={this.props.updateAfterEdit}/>
+				return <RecordContainer handleEditButtonClick={this.handleEditButtonClick} key={record.id} record={record} handleClick={this.handleClick} formData={this.state.formData} updateAfterEdit={this.props.updateAfterEdit}/>
 			}
 		})
 	}
@@ -115,7 +125,101 @@ class RecordsPage extends React.Component {
 	}
 
 	
-		
+	
+	handleEditButtonClick = (clickedRecord) => {
+		this.setState({
+			editFormData: {
+				id: clickedRecord.id,
+				doctor_first_name: clickedRecord.doctor_first_name,
+				doctor_last_name: clickedRecord.doctor_last_name,
+				practice_name: clickedRecord.practice_name,
+				visit_date: clickedRecord.visit_date,
+				title: clickedRecord.title,
+				notes: clickedRecord.notes,
+				patient_id: 1
+			}
+		})	
+	}	
+
+	handleEditText = (event) => {
+		const input = event.target.value
+		this.setState({
+			editFormData: {
+				...this.state.editFormData,
+				[event.target.name]: input
+			}
+		})
+	}
+
+	cancelEdit = () => {
+		console.log(this.state.editFormData, "cancelled")
+		this.setState({
+			editFormData: {
+				id: "",
+				doctor_first_name: "",
+				doctor_last_name: "",
+				practice_name: "",
+				visit_date: "",
+				title: "",
+				notes: "",
+				patient_id: 1
+			}
+		})
+	}
+
+	handleSave = (event, id) => {
+		event.preventDefault()
+		// debugger
+
+		const visit_date = document.getElementById("visit_date").value
+		this.setState({
+			editFormData: {
+				...this.state.editFormData,
+				visit_date: visit_date
+			}
+		}, this.patchRecord(id))			
+	}
+
+
+	patchRecord = (id) => {
+		const instUrl = 'http://localhost:3001/records/' + `${id}`
+		const options = {
+			url: instUrl,
+			method: 'PATCH',
+			headers: {
+				'Accept' : 'application/json',
+				'Content-Type': 'application/json'
+			},
+			data: this.state.editFormData
+		}
+
+		axios(options)
+			.then(editedRecordResp => {
+				const editedRecord = editedRecordResp.data
+				this.props.updateAfterEdit(editedRecord)
+				this.setState({
+					editFormData: {
+						id: "",
+						doctor_first_name: "",
+						doctor_last_name: "",
+						practice_name: "",
+						visit_date: "",
+						title: "",
+						notes: "",
+						patient_id: 1
+					}
+				})
+			})
+			.catch(error => {
+				console.log('Error with Saving Record:', error)
+			})
+	}
+
+
+
+
+
+
 
 	render() {
 		return(
@@ -189,6 +293,57 @@ class RecordsPage extends React.Component {
 			</thead>
 			{this.renderPastRecord()}
 		  </table>
+
+
+
+
+
+				{/* BEGIN MODAL FORM */}
+				<div id="edit-modal" class="modal">
+					<div class="modal-content">
+						<form onSubmit={(event) => this.handleSave(event, this.state.editFormData.id)}>
+							<h4>Edit Record</h4>
+							<p>(type to edit)</p>
+
+							<input id="doctor_last_name" name="doctor_last_name" type="text" onChange={this.handleEditText} value={this.state.editFormData.doctor_last_name} />
+							{/* set values to state */}
+							<label htmlFor="doctor_last_name">Doctor's Last Name</label>
+							
+							<input id="doctor_first_name" name="doctor_first_name" type="text" onChange={this.handleEditText} value={this.state.editFormData.doctor_first_name} />
+							<label htmlFor="doctor_first_name">Doctor's First Name</label>
+
+							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEditText} value={ this.state.editFormData.practice_name } />
+							<label htmlFor="practice_name">Hospital or Practice Name</label>
+
+							<input id="visit_date" type="text" className="datepicker" name="visit_date" value={ this.state.editFormData.visit_date }/>
+							<label htmlFor="visit_date">Date of Visit</label>
+                                   
+							<input id="title" name="title" type="text" onChange={this.handleEditText} value={ this.state.editFormData.title } />
+							<label htmlFor="title">Title (e.g., "Routine PCP Checkup", "Wrist X-Ray", etc.)</label>
+
+							<input id="notes" name="notes" type="text" onChange={this.handleEditText} value={ this.state.editFormData.notes } />
+							<label htmlFor="notes">Notes</label><br /><br />
+							{/* file submit below */}
+							<form action="#">
+							<div class="file-field input-field">
+      							<div class="btn">
+        							<span>FILE</span>
+        							<input type="file" multiple />
+     							</div>
+      							<div class="file-path-wrapper">
+        							<input class="file-path validate" type="text" placeholder="Upload one or more files" />
+      							</div>
+    						</div>
+							</form>
+						{/* submit or cancel footer below */}
+						<div class="modal-footer">
+							<a class="modal-close waves-effect waves-green btn-flat" onClick={this.cancelEdit}>Cancel</a>
+							<input class="modal-close btn" type="submit" value="save changes"/>
+						</div>
+					</form>
+				</div>
+				</div>
+			{/* END MODAL FORM */}
 		  </div>
 		  </React.Fragment>		 
 		)
