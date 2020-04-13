@@ -38,8 +38,8 @@ class RecordContainer extends React.Component {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, title, notes, id } = this.props.record
 	   
 		return(
-			< >
-			<tbody>
+			<React.Fragment>
+			
 				{/* BEGIN MODAL FORM */}
 				<div id="edit-modal" class="modal">
 					<div class="modal-content">
@@ -83,9 +83,10 @@ class RecordContainer extends React.Component {
 						</div>
 					</form>
 				</div>
-				</div>	
+				</div>
+					
 			{/* END MODAL FORM */}
-			
+			<tbody>
 			  <tr>
 				<td>{ visit_date }</td>
 				<td>{ doctor_last_name }, { doctor_first_name }</td>
@@ -101,7 +102,7 @@ class RecordContainer extends React.Component {
 				</td>
 			  </tr>
 			</tbody>
-			</>
+			</React.Fragment>
 		)
 	}
 

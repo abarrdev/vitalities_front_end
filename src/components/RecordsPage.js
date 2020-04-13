@@ -162,11 +162,12 @@ class RecordsPage extends React.Component {
 
 	render() {
 		return(
+			<React.Fragment>
 			<div className="container">
 
 			{/* BEGIN MODAL FORM */}
-				<div id="record-modal" class="modal">
-					<div class="modal-content">
+				<div id="record-modal" className="modal">
+					<div className="modal-content">
 						<form onSubmit={this.handleSubmit}>
 							<h4>Add New Record</h4>
 
@@ -231,7 +232,8 @@ class RecordsPage extends React.Component {
 			</thead>
 			{this.renderPastRecord()}
 		  </table>
-		  </div>		 
+		  </div>
+		  </React.Fragment>		 
 		)
 	}
 }
