@@ -22,6 +22,9 @@ class RecordContainer extends React.Component {
 	componentDidMount = () => {
 		const editForm = document.querySelectorAll('.modal');
 		M.Modal.init(editForm);
+
+		const newRecordDate = document.querySelectorAll('.datepicker');
+		 M.Datepicker.init(newRecordDate);
 	}
 
 	handleEditText = (event) => {
@@ -34,6 +37,20 @@ class RecordContainer extends React.Component {
 		})
 	}
 
+	handleSave = (event) => {
+		event.preventDefault()
+		const visit_date = document.getElementById("visit_date").value
+		this.setState({
+			editFormData: {
+				...this.state.editFormData,
+				visit_date: visit_date
+			}
+		}, this.postRecord)	
+		//set state must be done before posting record, record only posted once state is set with visit_date
+		//otherwise, post takes place without grabbing visit_date
+		//ty MG for this tip!
+	}
+
 	render() {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, title, notes, id } = this.props.record
 	   
@@ -43,7 +60,7 @@ class RecordContainer extends React.Component {
 				{/* BEGIN MODAL FORM */}
 				<div id="edit-modal" class="modal">
 					<div class="modal-content">
-						<form onSubmit={this.handleSubmit}>
+						<form onSubmit={this.handleSave}>
 							<h4>Edit Record</h4>
 							<p>(type to edit)</p>
 
@@ -79,7 +96,7 @@ class RecordContainer extends React.Component {
 						{/* submit or cancel footer below */}
 						<div class="modal-footer">
 							<a class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-							<input class="modal-close btn" type="submit" />
+							<input class="modal-close btn" type="submit" value="save changes"/>
 						</div>
 					</form>
 				</div>

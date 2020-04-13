@@ -33,8 +33,8 @@ class RecordsPage extends React.Component {
 		const newRecordForm = document.querySelectorAll('.modal');
 		M.Modal.init(newRecordForm);
 		
-		const elems2 = document.querySelectorAll('.datepicker');
-		 M.Datepicker.init(elems2);
+		const newRecordDate = document.querySelectorAll('.datepicker');
+		 M.Datepicker.init(newRecordDate);
 		 // const instances = M.Modal.init(elems, options);
 	}
 
@@ -57,8 +57,8 @@ class RecordsPage extends React.Component {
 				visit_date: visit_date
 			}
 		}, this.postRecord)	
-		//set state must be done before posting record, record only posted once state is done setting
-		//otherwise, post takes place without grabbing state that includes the visit_date
+		//set state must be done before posting record, record only posted once state is set with visit_date
+		//otherwise, post takes place without grabbing visit_date
 		//ty MG for this tip!
 	}
 
@@ -105,11 +105,11 @@ class RecordsPage extends React.Component {
 		}
 	}
 
-	editRecord = (id) => {
-		console.log(id, "was clicked")
+	// editRecord = (id) => {
+	// 	console.log(id, "was clicked")
 		
-		this.modalInst.open();
-	}
+	// 	this.modalInst.open();
+	// }
 
 
 	deleteRecord = (id) => {
