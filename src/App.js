@@ -77,11 +77,10 @@ class App extends React.Component {
             {/* <Route exact path='/login' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />           */}
             {/* <Route exact path='/logout' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />      */}
             {/* <Route exact path='/signup' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />           */}
-            <Route exact path='/home' render={() => <PatientPage updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-            <Route exact path='/records' render={() => <RecordsPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-            <Route exact path='/records' render={() => <RecordsPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-            <Route exact path='/' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-            <Route exact path='' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='/home' render={() => <PatientPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='/records' render={() => <RecordsPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />                
+            <Route exact path='/' render={() => <PatientPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            <Route exact path='' render={() => <PatientPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             {/* <Route exact path='/medications' render={() => <Medications patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
             {/* <Route exact path='/insurance' render={() => <Insurance patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
             {/* <Route exact path='/contacts' render={() => <Contacts patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}

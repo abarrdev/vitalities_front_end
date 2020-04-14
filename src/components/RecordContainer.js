@@ -59,6 +59,5 @@ class RecordContainer extends React.Component {
 
 }
 
-//any time we hit an edit, set state to
 
 export default RecordContainer; 
