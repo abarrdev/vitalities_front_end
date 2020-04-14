@@ -30,15 +30,7 @@ class RecordsPage extends React.Component {
 		}
 	}
 
-	renderPastRecord = () => {
-		// const now = new Date();
-		return this.props.records.map(record => {
-			if ((record.patient_id === 1) && (record.title !== "")) {
-				return <RecordContainer handleEditButtonClick={this.handleEditButtonClick} key={record.id} record={record} handleClick={this.handleClick} formData={this.state.formData} updateAfterEdit={this.props.updateAfterEdit}/>
-			}
-		})
-	}
-	
+		
 	componentDidMount = () => {
 		const newRecordForm = document.querySelectorAll('.modal');
 		M.Modal.init(newRecordForm);
@@ -47,6 +39,16 @@ class RecordsPage extends React.Component {
 		 M.Datepicker.init(newRecordDate);
 		 // const instances = M.Modal.init(elems, options);
 	}
+
+
+	renderPastRecord = () => {
+		return this.props.records.map(record => {
+			if ((record.patient_id === 1) && (record.title !== "")) {
+				return <RecordContainer handleEditButtonClick={this.handleEditButtonClick} key={record.id} record={record} handleDeleteClick={this.handleDeleteClick} formData={this.state.formData} updateAfterEdit={this.props.updateAfterEdit}/>
+			}
+		})
+	}
+
 
 	handleEnterText = (event) => {
 		const input = event.target.value
@@ -57,6 +59,7 @@ class RecordsPage extends React.Component {
 			}
 		})
 	}
+
 
 	handleSubmit = (event) => {
 		event.preventDefault()
@@ -72,6 +75,7 @@ class RecordsPage extends React.Component {
 		//ty MG for this tip!
 	}
 
+
 	postRecord = () => {
 		const options = {
 			url: 'http://localhost:3001/records',
@@ -82,7 +86,6 @@ class RecordsPage extends React.Component {
 			},
 			data: this.state.formData
 		}
-
 		axios(options)
 			.then(newRecordResp => {
 				const newRecord = newRecordResp.data
@@ -105,26 +108,6 @@ class RecordsPage extends React.Component {
 	}
 
 
-	handleClick = (id, event) => {
-		event.preventDefault()
-		if (event.target.innerText === "delete") {
-			this.deleteRecord(id)
-		}
-	}
-
-
-
-
-	deleteRecord = (id) => {
-		const instUrl = 'http://localhost:3001/records/' + `${id}`
-		axios.delete(instUrl)
-		.then(deletedRecordResp => {
-			const deletedRecord = deletedRecordResp.data
-			this.props.updateAfterDelete(deletedRecord)
-		})
-	}
-
-	
 	
 	handleEditButtonClick = (clickedRecord) => {
 		this.setState({
@@ -141,15 +124,6 @@ class RecordsPage extends React.Component {
 		})	
 	}	
 
-	handleEditText = (event) => {
-		const input = event.target.value
-		this.setState({
-			editFormData: {
-				...this.state.editFormData,
-				[event.target.name]: input
-			}
-		})
-	}
 
 	cancelEdit = () => {
 		console.log(this.state.editFormData, "cancelled")
@@ -166,6 +140,18 @@ class RecordsPage extends React.Component {
 			}
 		})
 	}
+
+
+	handleEditText = (event) => {
+		const input = event.target.value
+		this.setState({
+			editFormData: {
+				...this.state.editFormData,
+				[event.target.name]: input
+			}
+		})
+	}
+
 
 	handleSave = (event, id) => {
 		event.preventDefault()
@@ -216,6 +202,25 @@ class RecordsPage extends React.Component {
 	}
 
 
+	handleDeleteClick = (id, event) => {
+		event.preventDefault()
+		if (event.target.innerText === "delete") {
+			this.deleteRecord(id)
+		}
+	}
+
+
+	deleteRecord = (id) => {
+		const instUrl = 'http://localhost:3001/records/' + `${id}`
+		axios.delete(instUrl)
+		.then(deletedRecordResp => {
+			const deletedRecord = deletedRecordResp.data
+			this.props.updateAfterDelete(deletedRecord)
+		})
+	}
+
+
+
 
 
 
@@ -226,7 +231,7 @@ class RecordsPage extends React.Component {
 			<React.Fragment>
 			<div className="container">
 
-			{/* BEGIN MODAL FORM */}
+			{/* BEGIN POST MODAL FORM */}
 				<div id="record-modal" className="modal">
 					<div className="modal-content">
 						<form onSubmit={this.handleSubmit}>
@@ -269,7 +274,7 @@ class RecordsPage extends React.Component {
 					</form>
 				</div>
 				</div>	
-			{/* END MODAL FORM */}
+			{/* END POST MODAL FORM */}
 
 				<div class="row">
 					<h3>Medical Records &nbsp;
@@ -295,10 +300,7 @@ class RecordsPage extends React.Component {
 		  </table>
 
 
-
-
-
-				{/* BEGIN MODAL FORM */}
+				{/* BEGIN EDIT MODAL FORM */}
 				<div id="edit-modal" class="modal">
 					<div class="modal-content">
 						<form onSubmit={(event) => this.handleSave(event, this.state.editFormData.id)}>
@@ -343,7 +345,7 @@ class RecordsPage extends React.Component {
 					</form>
 				</div>
 				</div>
-			{/* END MODAL FORM */}
+			{/* END EDIT MODAL FORM */}
 		  </div>
 		  </React.Fragment>		 
 		)

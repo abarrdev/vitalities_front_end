@@ -49,7 +49,7 @@ class RecordContainer extends React.Component {
 
 				</td>
 				<td>
-					<a class="waves-effect waves-light btn-floating btn-small" onClick={(event) => {this.props.handleClick(id, event)}}><i class="material-icons">delete</i></a>
+					<a class="waves-effect waves-light btn-floating btn-small" onClick={(event) => {this.props.handleDeleteClick(id, event)}}><i class="material-icons">delete</i></a>
 				</td>
 			  </tr>
 			</tbody>
