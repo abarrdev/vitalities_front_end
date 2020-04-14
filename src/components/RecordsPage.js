@@ -41,9 +41,18 @@ class RecordsPage extends React.Component {
 	}
 
 
-	renderPastRecord = () => {
-		return this.props.records.map(record => {
-			if ((record.patient_id === 1) && (record.title !== "")) {
+	renderPastRecord = () => {	
+		const sortedRecords = this.props.records.sort((a, b) => {
+			if (a.visit_date < b.visit_date) {
+			  return 1
+			}
+			if (a.visit_date > b.visit_date) {
+			  return -1
+			}
+		  })
+		  const pastRecords = sortedRecords.filter(record => new Date(record.visit_date) < new Date())
+		  return pastRecords.map(record => {
+			if (record.patient_id === 1) {
 				return <RecordContainer handleEditButtonClick={this.handleEditButtonClick} key={record.id} record={record} handleDeleteClick={this.handleDeleteClick} formData={this.state.formData} updateAfterEdit={this.props.updateAfterEdit}/>
 			}
 		})
@@ -219,9 +228,7 @@ class RecordsPage extends React.Component {
 		})
 	}
 
-
-
-
+	
 
 
 
@@ -287,7 +294,7 @@ class RecordsPage extends React.Component {
 			<table>
 			<thead>
 			  <tr>
-				  <th>Visit Date</th>
+				  <th style={{minWidth:100}}>Visit Date</th>
 				  <th>Doctor</th>
 				  <th>Practice</th>
 				  <th>Title</th>
