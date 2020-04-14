@@ -93,9 +93,9 @@ class PatientPage extends React.Component {
 			  return -1
 			}
 		  })
-		  return sortedRecords.map(record => {
-			//conditional below only here for demo purposes; need to adjust for login and if reverting back and forth from past or future record
-			if ((record.patient_id === 1) && (record.title === "")) {
+		  const futureRecords = sortedRecords.filter(record => new Date(record.visit_date) > new Date())
+			return futureRecords.map(record => {
+			  if (record.patient_id === 1) {
 				return <AppointmentContainer handleEditButtonClick={this.handleEditButtonClick} key={record.id} record={record} handleDeleteClick={this.handleDeleteClick} appointmentFormData={this.state.appointmentFormData} updateAfterEdit={this.props.updateAfterEdit}/>
 			}
 		})
