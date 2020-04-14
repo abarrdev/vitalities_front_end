@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import M from 'materialize-css'
 import PatientPage from './components/PatientPage'
 import RecordsPage from './components/RecordsPage'
-import Login from './components/Login'
+// import Login from './components/Login'
 import Navbar from './components/Navbar'
 import axios from 'axios'
 
@@ -70,22 +70,21 @@ class App extends React.Component {
     console.log(this.state.records)
 		return(
       <div>
-          <Navbar patients={this.state.patients} loggedIn={this.state.loggedIn} records={this.state.records}/>
+        <Navbar patients={this.state.patients} loggedIn={this.state.loggedIn} records={this.state.records}/>
 		
         <BrowserRouter>
-
           <Switch>
-            <Route exact path='/login' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            {/* <Route exact path='/login' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />           */}
             {/* <Route exact path='/logout' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />      */}
-            <Route exact path='/signup' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
+            {/* <Route exact path='/signup' render={() => <Login patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />           */}
             <Route exact path='/home' render={() => <PatientPage updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/records' render={() => <RecordsPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/records' render={() => <RecordsPage updateAfterEdit={this.updateAfterEdit} updateAfterDelete={this.updateAfterDelete} updateState={this.updateState} records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='/' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
             <Route exact path='' render={() => <PatientPage records={this.state.records} patients={this.state.patients} loggedIn={this.state.loggedIn}/>} />          
-             {/* <Route exact path='/medications' render={() => <Medications patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/>
-            <Route exact path='/insurance' render={() => <Insurance patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/>
-            <Route exact path='/contacts' render={() => <Contacts patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
+            {/* <Route exact path='/medications' render={() => <Medications patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
+            {/* <Route exact path='/insurance' render={() => <Insurance patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
+            {/* <Route exact path='/contacts' render={() => <Contacts patients={this.state.patients} loggedIn={this.state.loggedIn}/>}/> */}
           </Switch>
         </BrowserRouter>
 			</div>
