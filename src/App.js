@@ -67,7 +67,6 @@ class App extends React.Component {
   }
 
 	render() {
-    console.log(this.state.records)
 		return(
       <div>
         <Navbar patients={this.state.patients} loggedIn={this.state.loggedIn} records={this.state.records}/>

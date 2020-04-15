@@ -31,7 +31,6 @@ class RecordContainer extends React.Component {
 
 	render() {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, title, notes, id } = this.props.record
-		console.log('HELLOOO', this.state)
 
 		return(
 			<React.Fragment>
