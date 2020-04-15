@@ -31,7 +31,6 @@ class AppointmentContainer extends React.Component {
 
 	render() {
 		const { visit_date, doctor_first_name, doctor_last_name, practice_name, id } = this.props.record
-		console.log('HELLOOO APPT', this.state)
 
 		return(
 			<React.Fragment>

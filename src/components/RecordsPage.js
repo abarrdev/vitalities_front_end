@@ -37,7 +37,6 @@ class RecordsPage extends React.Component {
 		
 		const newRecordDate = document.querySelectorAll('.datepicker');
 		 M.Datepicker.init(newRecordDate);
-		 // const instances = M.Modal.init(elems, options);
 	}
 
 

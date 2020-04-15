@@ -1,46 +1,3 @@
-// import React from 'react'
-// import AppointmentContainer from './AppointmentContainer'
-
-// class PatientPage extends React.Component {
-
-// 	renderFutureRecord = () => {
-// 		return this.props.records.map(record => {
-// 			if ((record.patient_id === 1) && (record.title === "") && (record.notes === "")) {
-// 				return <AppointmentContainer key={record.id} record={record}/>
-// 			}
-// 		})
-// 	}
-
-
-// 	render() {
-// 		return(
-// 			<div className="container">
-// 				<div class="row">
-// 					<h3>Upcoming Appointments &nbsp;
-// 					<a class="waves-effect waves-light btn-floating modal-trigger" data-target="appointment-modal">
-// 						<i class="material-icons">add</i>
-// 					</a>
-// 					</h3>
-// 				</div>
-// 			<table>
-// 			<thead>
-// 			  <tr>
-// 				  <th>Visit Date</th>
-// 				  <th>Doctor</th>
-// 				  <th>Practice</th>
-// 			  </tr>
-// 			</thead>
-// 				{this.renderFutureRecord()}
-			
-// 		 	 </table>
-// 		  </div>		 
-// 		)
-// 	}
-// }
-
-// export default PatientPage
-
-
 import React from 'react'
 import AppointmentContainer from './AppointmentContainer'
 import axios from 'axios'
@@ -80,7 +37,6 @@ class PatientPage extends React.Component {
 		
 		const newAppointmentDate = document.querySelectorAll('.datepicker');
 		 M.Datepicker.init(newAppointmentDate);
-		 // const instances = M.Modal.init(elems, options);
 	}
 
 
@@ -115,11 +71,11 @@ class PatientPage extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
-		const visit_date = document.getElementById("visit_date").value
+		const selected_visit_date = document.getElementById("appointment_visit_date").value
 		this.setState({
 			appointmentFormData: {
 				...this.state.appointmentFormData,
-				visit_date: visit_date
+				visit_date: selected_visit_date
 			}
 		}, this.postRecord)	
 		//set state must be done before posting record, record only posted once state is set with visit_date
@@ -196,6 +152,7 @@ class PatientPage extends React.Component {
 
 
 	handleEditText = (event) => {
+		console.log('edits be made')
 		const input = event.target.value
 		this.setState({
 			editAppointmentFormData: {
@@ -208,13 +165,12 @@ class PatientPage extends React.Component {
 
 	handleSave = (event, id) => {
 		event.preventDefault()
-		// debugger
 
-		const visit_date = document.getElementById("visit_date").value
+		const selected_visit_date = document.getElementById("appointment_visit_date").value
 		this.setState({
 			editAppointmentFormData: {
 				...this.state.editAppointmentFormData,
-				visit_date: visit_date
+				visit_date: selected_visit_date
 			}
 		}, this.patchRecord(id))			
 	}
@@ -297,26 +253,26 @@ class PatientPage extends React.Component {
 							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEditText} value={ this.state.editAppointmentFormData.practice_name } />
 							<label htmlFor="practice_name">Hospital or Practice Name</label>
 
-							<input id="visit_date" type="text" className="datepicker" name="visit_date" value={ this.state.editAppointmentFormData.visit_date }/>
-							<label htmlFor="visit_date">Date of Visit</label>
+							<input id="appointment_visit_date" type="text" className="datepicker" name="visit_date" value={ this.state.editAppointmentFormData.visit_date }/>
+							<label htmlFor="appointment_visit_date">Date of Visit</label>
                                    
 							<input id="title" name="title" type="text" onChange={this.handleEditText} value={ this.state.editAppointmentFormData.title } />
 							<label htmlFor="title">Reason for Visit (e.g., "Weekly PT Appointment", "CBC as ordered by Dr. Reynolds", etc.)</label>
 
 						{/* submit or cancel footer below */}
-						<div class="modal-footer">
-							<a class="modal-close waves-effect waves-green btn-flat" onClick={this.cancelEdit}>Cancel</a>
-							<input class="modal-close btn" type="submit" value="save"/>
+						<div className="modal-footer">
+							<a className="modal-close waves-effect waves-green btn-flat" onClick={this.cancelEdit}>Cancel</a>
+							<input className="modal-close btn" type="submit" value="save"/>
 						</div>
 					</form>
 				</div>
 				</div>
 			{/* END POST MODAL FORM */}
 
-				<div class="row">
+				<div className="row">
 					<h3>Upcoming Appointments &nbsp;
-						<a class="waves-effect waves-light btn-floating modal-trigger" data-target="appointment-modal">
-							<i class="material-icons">add</i>
+						<a className="waves-effect waves-light btn-floating modal-trigger" data-target="appointment-modal">
+							<i className="material-icons">add</i>
 						</a>
 					</h3>
 				</div>
@@ -352,8 +308,8 @@ class PatientPage extends React.Component {
 							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEditText} value={ this.state.editAppointmentFormData.practice_name } />
 							<label htmlFor="practice_name">Hospital or Practice Name</label>
 
-							<input id="visit_date" type="text" className="datepicker" name="visit_date" value={ this.state.editAppointmentFormData.visit_date }/>
-							<label htmlFor="visit_date">Date of Visit</label>
+							<input id="appointment_visit_date" type="text" className="datepicker" name="visit_date" value={ this.state.editAppointmentFormData.visit_date }/>
+							<label htmlFor="appointment_visit_date">Date of Visit</label>
 
 						{/* submit or cancel footer below */}
 						<div class="modal-footer">
