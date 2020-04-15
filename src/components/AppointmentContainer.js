@@ -5,12 +5,12 @@ import M from 'materialize-css'
 
 
 class AppointmentContainer extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
+	// constructor(props) {
+	// 	super(props)
+	// 	this.state = {
 			
-		}
-	}
+	// 	}
+	// }
 	
 
 	componentDidMount = () => {
