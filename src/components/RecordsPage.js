@@ -258,7 +258,7 @@ class RecordsPage extends React.Component {
 							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEnterText} value={this.state.formData.practice_name} />
 							<label htmlFor="practice_name">Hospital or Practice Name</label>
 
-							<input id="visit_date" type="text" className="datepicker" name="visit_date"/>
+							<input id="visit_date" type="date" name="visit_date"/>
 							<label htmlFor="visit_date">Date of Visit</label>
                                    
 							<input id="title" name="title" type="text" onChange={this.handleEnterText} value={this.state.formData.title} />
