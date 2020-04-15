@@ -6,6 +6,7 @@ import RecordsPage from './components/RecordsPage'
 // import Login from './components/Login'
 import Navbar from './components/Navbar'
 import axios from 'axios'
+import xray_hand from './images/xray_hand.jpg'
 
 class App extends React.Component {
 	constructor(props) {

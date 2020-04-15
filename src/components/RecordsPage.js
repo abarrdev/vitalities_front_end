@@ -2,6 +2,7 @@ import React from 'react'
 import RecordContainer from './RecordContainer'
 import axios from 'axios'
 import M from 'materialize-css'
+import xray_hand from '../images/xray_hand.jpg'
 
 
 class RecordsPage extends React.Component {
@@ -241,7 +242,8 @@ class RecordsPage extends React.Component {
 		console.log(this.props, "PROOPS")
 		return(
 			<React.Fragment>
-			<div className="container">
+				<div className="container">
+			
 
 			{/* BEGIN POST MODAL FORM */}
 				<div id="record-modal" className="modal">

@@ -12,7 +12,7 @@ class Navbar extends React.Component {
 		<nav className="nav-extended red accent-1" style={{height:140}}>
 
 		<div className="nav-wrapper">
-		<a href="#!" style={{paddingTop:10, paddingLeft:20}} className="brand-logo left"><h1>Vitalities</h1></a>
+		<a href="/" style={{paddingTop:10, paddingLeft:20}} className="brand-logo left"><h1>Vitalities</h1></a>
 			<div className="row">
 
 				<ul className="right tabs-transparent" style={{paddingTop:75, paddingRight:10}}>
