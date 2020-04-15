@@ -235,7 +235,7 @@ class PatientPage extends React.Component {
 	render() {
 		return(
 			<React.Fragment>
-			<div className="container">
+			<div className="container" style={{maxWidth:700}}>
 			
 			{/* BEGIN POST MODAL FORM */}
 				<div id="appointment-modal" className="modal">
