@@ -50,6 +50,7 @@ class RecordsPage extends React.Component {
 			}
 		  })
 		  const pastRecords = sortedRecords.filter(record => new Date(record.visit_date) < new Date())
+		  console.log(pastRecords, "PASSSST")
 		  return pastRecords.map(record => {
 			if (record.patient_id === 1) {
 				return <RecordContainer handleEditButtonClick={this.handleEditButtonClick} key={record.id} record={record} handleDeleteClick={this.handleDeleteClick} formData={this.state.formData} updateAfterEdit={this.props.updateAfterEdit}/>
@@ -237,6 +238,7 @@ class RecordsPage extends React.Component {
 
 
 	render() {
+		console.log(this.props, "PROOPS")
 		return(
 			<React.Fragment>
 			<div className="container">
@@ -327,7 +329,7 @@ class RecordsPage extends React.Component {
 							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEditText} value={ this.state.editFormData.practice_name } />
 							<label htmlFor="practice_name">Hospital or Practice Name</label>
 
-							<input id="visit_date" type="text" className="datepicker" name="visit_date" value={ this.state.editFormData.visit_date }/>
+							<input id="visit_date" type="date" name="visit_date" onChange={this.handleEditText} value={ this.state.editFormData.visit_date }/>
 							<label htmlFor="visit_date">Date of Visit</label>
                                    
 							<input id="title" name="title" type="text" onChange={this.handleEditText} value={ this.state.editFormData.title } />
