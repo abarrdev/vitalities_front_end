@@ -240,23 +240,23 @@ class PatientPage extends React.Component {
 			{/* BEGIN POST MODAL FORM */}
 				<div id="appointment-modal" class="modal">
 					<div class="modal-content">
-						<form onSubmit={(event) => this.handleSave(event, this.state.editAppointmentFormData.id)}>
+						<form onSubmit={(event) => this.handleSubmit(event, this.state.appointmentFormData.id)}>
 							<h4>Add Appointment</h4>
 
-							<input id="doctor_last_name" name="doctor_last_name" type="text" onChange={this.handleEditText} value={this.state.editAppointmentFormData.doctor_last_name} />
+							<input id="doctor_last_name" name="doctor_last_name" type="text" onChange={this.handleEnterText} value={this.state.appointmentFormData.doctor_last_name} />
 							{/* set values to state */}
 							<label htmlFor="doctor_last_name">Doctor's Last Name</label>
 							
-							<input id="doctor_first_name" name="doctor_first_name" type="text" onChange={this.handleEditText} value={this.state.editAppointmentFormData.doctor_first_name} />
+							<input id="doctor_first_name" name="doctor_first_name" type="text" onChange={this.handleEnterText} value={this.state.appointmentFormData.doctor_first_name} />
 							<label htmlFor="doctor_first_name">Doctor's First Name</label>
 
-							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEditText} value={ this.state.editAppointmentFormData.practice_name } />
+							<input id="practice_name" name="practice_name" type="text" onChange={this.handleEnterText} value={ this.state.appointmentFormData.practice_name } />
 							<label htmlFor="practice_name">Hospital or Practice Name</label>
 
-							<input id="appointment_visit_date" type="text" className="datepicker" name="visit_date" value={ this.state.editAppointmentFormData.visit_date }/>
+							<input id="appointment_visit_date" type="text" className="datepicker" name="visit_date"/>
 							<label htmlFor="appointment_visit_date">Date of Visit</label>
                                    
-							<input id="title" name="title" type="text" onChange={this.handleEditText} value={ this.state.editAppointmentFormData.title } />
+							<input id="title" name="title" type="text" onChange={this.handleEnterText} value={ this.state.appointmentFormData.title } />
 							<label htmlFor="title">Reason for Visit (e.g., "Weekly PT Appointment", "CBC as ordered by Dr. Reynolds", etc.)</label>
 
 						{/* submit or cancel footer below */}

@@ -106,7 +106,8 @@ class RecordsPage extends React.Component {
 						visit_date: "",
 						title: "",
 						notes: "",
-						patient_id: 1
+						patient_id: 1,
+						med_record: null
 					}
 				})
 			})
@@ -127,7 +128,8 @@ class RecordsPage extends React.Component {
 				visit_date: clickedRecord.visit_date,
 				title: clickedRecord.title,
 				notes: clickedRecord.notes,
-				patient_id: 1
+				patient_id: 1,
+				med_record: clickedRecord.med_record
 			}
 		})	
 	}	
@@ -144,7 +146,8 @@ class RecordsPage extends React.Component {
 				visit_date: "",
 				title: "",
 				notes: "",
-				patient_id: 1
+				patient_id: 1,
+				med_record: null
 			}
 		})
 	}
@@ -200,7 +203,8 @@ class RecordsPage extends React.Component {
 						visit_date: "",
 						title: "",
 						notes: "",
-						patient_id: 1
+						patient_id: 1,
+						med_record: null
 					}
 				})
 			})
@@ -265,7 +269,7 @@ class RecordsPage extends React.Component {
 							<div class="file-field input-field">
       							<div class="btn">
         							<span>FILE</span>
-        							<input type="file" multiple />
+        							<input id="med_record" name="med_record" type="file"/>
      							</div>
       							<div class="file-path-wrapper">
         							<input class="file-path validate" type="text" placeholder="Upload one or more files" />
