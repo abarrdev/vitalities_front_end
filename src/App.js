@@ -6,7 +6,7 @@ import RecordsPage from './components/RecordsPage'
 // import Login from './components/Login'
 import Navbar from './components/Navbar'
 import axios from 'axios'
-import xray_hand from './images/xray_hand.jpg'
+import { xray_hand } from './images/xray_hand.jpg'
 
 class App extends React.Component {
 	constructor(props) {
@@ -70,6 +70,7 @@ class App extends React.Component {
 	render() {
 		return(
       <div>
+      {/* // <div style={{backgroundColor:'#b2ebf2', display:'table', position:'absolute', height:'100%', width:'100%'}}> */}
         <Navbar patients={this.state.patients} loggedIn={this.state.loggedIn} records={this.state.records}/>
 		
         <BrowserRouter>

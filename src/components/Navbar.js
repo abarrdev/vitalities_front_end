@@ -1,21 +1,27 @@
 import React from 'react'
+import logo from '../images/logo.jpg'
 
 class Navbar extends React.Component {
+
 
 	render() {
 	return (
 		
 
+
 		// <div className="container">
 		// <nav className="red accent-1" style={{height: '200px'}}>
 		// <div className="container" style={{height:200}}>
-		<nav className="nav-extended red accent-1" style={{height:140}}>
+		<nav className="nav-extended red accent-1 z-depth-2" style={{height:130}}>
 
 		<div className="nav-wrapper">
-		<a href="/" style={{paddingTop:10, paddingLeft:20}} className="brand-logo left"><h1>Vitalities</h1></a>
+		<a href="/" style={{paddingTop:50, paddingLeft:25}} className="brand-logo left">
+			<a style={{fontSize:60}}>Vitalities</a>
+			<i className="large material-icons" style={{fontSize:40}}>healing</i>
+		</a>
 			<div className="row">
 
-				<ul className="right tabs-transparent" style={{paddingTop:75, paddingRight:10}}>
+				<ul className="right tabs-transparent" style={{paddingTop:67, paddingRight:10}}>
 				<li><a href="/home">Home</a></li>
 					<li><a href="/records">Records</a></li>
 					<li><a className="disabled">Medication Manager</a></li>
