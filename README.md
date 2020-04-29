@@ -1,68 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Vitalities
 
-## Available Scripts
+Vitalities is a tool that allows a patient to keep track of upcoming appointments and medical records. It allows a user to keep custom, subjective, legible notes on each doctor visit for their own reference.
 
-In the project directory, you can run:
 
-### `yarn start`
+## Current Features
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* user can view, add, edit, and delete upcoming appointment reminders
+* appointment reminders are saved in 'Medical Records' section once the appointment date has passed
+* user can view, add, edit, and delete past records
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+## Demo
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+adding an appointment reminder:
 
-### `yarn build`
+![Add Appointment - Demo](https://user-images.githubusercontent.com/51717861/80429666-3ac88f00-88b2-11ea-8757-c519e5232784.gif)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+editing, deleting appointment reminder:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![Edit/Delete Appointment - Demo](https://user-images.githubusercontent.com/51717861/80429688-41570680-88b2-11ea-93f8-e06eaecb81aa.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+changing date to past; appointment becomes visit record (with empty spaces to add a short title and custom notes):
 
-### `yarn eject`
+![Past Appointment Converts to Record - Demo](https://user-images.githubusercontent.com/51717861/80429702-487e1480-88b2-11ea-87ee-959796e9a657.gif)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+adding a visit record (if no appointment reminder was created first):
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Add Record - Demo](https://user-images.githubusercontent.com/51717861/80429717-503db900-88b2-11ea-8d39-567f2bc0de9b.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributing:
 
-## Learn More
+1. Fork this repository.
+2. Create a branch: `git checkout -b <branch_name>`.
+3. Make your changes and commit them: `git commit -m '<commit_message>'`
+4. Push to the original branch: `git push origin <project_name>/<location>`
+5. Create the pull request.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Contact
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+My e-mail is <andrea@andreabarr.dev>.
+visit my [LinkedIn](https://www.linkedin.com/in/abarrdev/)
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This project uses the following license: [MIT License](</>).
