@@ -47,4 +47,4 @@ visit my [LinkedIn](https://www.linkedin.com/in/abarrdev/)
 
 ## License
 
-This project uses the following license: [MIT License](</>).
+This project uses the following license: [MIT License](</LICENSE.txt>).
