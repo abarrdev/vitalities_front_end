@@ -42,8 +42,9 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 
 ## Contact
 
-My e-mail is <andrea@andreabarr.dev>.
+My email is <andrea@andreabarr.dev>.
 visit my [LinkedIn](https://www.linkedin.com/in/abarrdev/)
+
 
 ## License
 
